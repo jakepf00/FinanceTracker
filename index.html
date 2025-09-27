@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <h1>Finance Tracker</h1>
+    <form id="expenseForm" onsubmit="sendExpenseForProcessing(this)">
+      <input type="number" id="amount" name="amount" min="0.01" step="0.01">
+      <label for="amount">Amount</label><br/>
+      
+      <input type="text" id="description" name="description">
+      <label for="description">Description</label><br/>
+      
+      <input type="text" id="category" name="category">
+      <label for="category">Category</label><br/>
+      
+      <!-- TODO: default to today's date (JavaScript) -->
+      <input type="date" id="date" name="date"><br/>
+      <!-- <label for="date">Date</label><br/>  Don't really need a label -->
+      
+      <input type="radio" id="expense" name="incomeExpense" value="expense" checked>
+      <label for="expense">Expense</label>
+      <input type="radio" id="income" name="incomeExpense" value="income">
+      <label for="income">Income</label><br/>
+      
+      <input type="submit"/>
+    </form>
+
+    <script>
+      function sendExpenseForProcessing(form) {
+        google.script.run.submitExpense(form);
+        return false; // Prevent default form submission
+      }
+    </script>
+
+  </body>
+</html>
