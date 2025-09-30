@@ -1,12 +1,15 @@
-/*
-// Add menu to the UI
+/*// Add menu to the UI
 function onOpen() {
-  var ui = SpreadsheetApp.getUi();
-  ui.createMenu('Jacob Menu')
-    .addItem('Insert the date', 'insertDate')
+  SpreadsheetApp.getUi()
+    .createMenu('Expense Menu')
+    .addItem('Add Expense', 'showAddExpenseSidebar')
     .addToUi();
 }
-*/
+
+function showAddExpenseSidebar() {
+  var sidebarHtml = HtmlService.createHtmlOutputFromFile('Sidebar').setTitle('Add Expense');
+  SpreadsheetApp.getUi().showSidebar(sidebarHtml);
+}
 
 // Test function
 function insertDate() {
