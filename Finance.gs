@@ -1,14 +1,37 @@
-/*// Add menu to the UI
+// Add menu to the UI
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('Expense Menu')
     .addItem('Add Expense', 'showAddExpenseSidebar')
+    .addItem('Set up new sheet', 'createFinanceTemplate')
     .addToUi();
 }
 
 function showAddExpenseSidebar() {
-  var sidebarHtml = HtmlService.createHtmlOutputFromFile('Sidebar').setTitle('Add Expense');
+  var sidebarHtml = HtmlService.createHtmlOutputFromFile('AddExpenseSidebar').setTitle('Add Expense');
   SpreadsheetApp.getUi().showSidebar(sidebarHtml);
+}
+
+function createFinanceTemplate() {
+  var ui = SpreadsheetApp.getUi();
+
+  var response = ui.alert(
+    'Confirm Action',
+    'Are you sure you want to proceed with this action? Other sheet data may be lost.',
+    ui.ButtonSet.OK_CANCEL
+  );
+
+  // Process the user's response
+  if (response != ui.Button.OK) {
+    return;
+  }
+  
+  // Continue creating template
+  ui.alert("Creating template...")
+
+  // TODO: create these items
+  // Create tabs - add expense, dashboard, data, settings
+  // Create tables
 }
 
 // Test function
@@ -18,13 +41,7 @@ function insertDate() {
   cell.setValue(new Date());
 }
 
-// Function to set up sheet?
-// Create tabs - dashboard, data, settings
-// Create tables
-// Add UI elements for add expense, ...
-
-// Function to add expense
-// Sidebar?
+// Function to add expense (Both sidebar + from add expense sheet)
 
 // Function for automated data entry from external sources?
 
