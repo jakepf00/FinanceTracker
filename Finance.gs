@@ -13,25 +13,51 @@ function showAddExpenseSidebar() {
 }
 
 function createFinanceTemplate() {
-  var ui = SpreadsheetApp.getUi();
-
-  var response = ui.alert(
+  // Confirm action
+  var response = SpreadsheetApp.getUi().alert(
     'Confirm Action',
     'Are you sure you want to proceed with this action? Other sheet data may be lost.',
-    ui.ButtonSet.OK_CANCEL
+    SpreadsheetApp.getUi().ButtonSet.OK_CANCEL
   );
-
   // Process the user's response
-  if (response != ui.Button.OK) {
+  if (response != SpreadsheetApp.getUi().Button.OK) {
     return;
   }
   
-  // Continue creating template
-  ui.alert("Creating template...")
+  // Create and set up sheets
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
 
-  // TODO: create these items
-  // Create tabs - add expense, dashboard, data, settings
-  // Create tables
+  var addExpenseSheet = ss.insertSheet("Add Expense");
+  setupSheetAddExpense(addExpenseSheet);
+
+  var dashboardSheet = ss.insertSheet("Dashboard");
+  setupSheetDashboard(dashboardSheet);
+
+  var dataSheet = ss.insertSheet("Data");
+  setupSheetData(dataSheet);
+
+  var settingsSheet = ss.insertSheet("Settings");
+  setupSheetSettings(settingsSheet);
+}
+
+function setupSheetAddExpense(addExpenseSheet) {
+  SpreadsheetApp.getUi().alert("Setting up add expense sheet...")
+  // TODO: implement
+}
+
+function setupSheetDashboard(dashboardSheet) {
+  SpreadsheetApp.getUi().alert("Setting up dashboard sheet...")
+  // TODO: implement
+}
+
+function setupSheetData(dataSheet) {
+  SpreadsheetApp.getUi().alert("Setting up data sheet...")
+  // TODO: implement
+}
+
+function setupSheetSettings(settingsSheet) {
+  SpreadsheetApp.getUi().alert("Setting up settings sheet...")
+  // TODO: implement
 }
 
 // Test function
@@ -40,9 +66,3 @@ function insertDate() {
   var cell = sheet.getRange('B2');
   cell.setValue(new Date());
 }
-
-// Function to add expense (Both sidebar + from add expense sheet)
-
-// Function for automated data entry from external sources?
-
-// Functions for data analysis, display on dashboard
