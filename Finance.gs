@@ -1,3 +1,5 @@
+// TODO: Break into modules
+
 // Add menu to the UI
 function onOpen() {
   SpreadsheetApp.getUi()
@@ -52,7 +54,21 @@ function setupSheetDashboard(dashboardSheet) {
 
 function setupSheetData(dataSheet) {
   SpreadsheetApp.getUi().alert("Setting up data sheet...")
-  // TODO: implement
+  // TODO: just have user manually turn this into a table?
+  // - Have an alert dialog to instruct.
+  // - Format > convert to table.
+  // - Name it as well?  or future finding/use.
+  // - isIncome type also isn't setting correctly (checkbox).
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const data = [
+    ['Date', 'Amount','Category','Description','isIncome'],
+    ['10/04/2025','$0.00','Test','Test Expense','FALSE'],
+    ['10/04/2025','$0.00','Test','Test Income','TRUE'],
+  ];
+  const startRow = 1;
+  const startCol = 1;
+  const range = sheet.getRange(startRow, startCol, data.length, data[0].length);
+  range.setValues(data);
 }
 
 function setupSheetSettings(settingsSheet) {
@@ -66,3 +82,9 @@ function insertDate() {
   var cell = sheet.getRange('B2');
   cell.setValue(new Date());
 }
+
+// TODO: Function to add expense (Both sidebar + from add expense sheet)
+
+// TODO: Function for automated data entry from external sources?
+
+// TODO: Functions for data analysis, display on dashboard
