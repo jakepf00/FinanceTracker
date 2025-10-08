@@ -91,7 +91,6 @@ function setupSheetData(dataSheet) {
   // - Have an alert dialog to instruct.
   // - Format > convert to table.
   // - Name it as well?  or future finding/use.
-  // - isIncome type also isn't setting correctly (checkbox).
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   const data = [
     ['Date', 'Amount','Category','Description','isIncome'],
@@ -102,6 +101,9 @@ function setupSheetData(dataSheet) {
   const startCol = 1;
   const range = sheet.getRange(startRow, startCol, data.length, data[0].length);
   range.setValues(data);
+
+  cells = sheet.getRange(2, 5, 2, 1);
+  cells.insertCheckboxes();
 }
 
 function setupSheetSettings(settingsSheet) {
