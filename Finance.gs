@@ -1,4 +1,7 @@
 // TODO: Break into modules
+// Sheet setup module
+// Data functions? submit expense (+ built in functions? onOpen, onEdit...)
+// Analysis module
 
 // Add menu to the UI
 function onOpen() {
@@ -70,7 +73,6 @@ function setupSheetAddExpense(addExpenseSheet) {
   cells.setNumberFormat("$#,##0.00");
   // TODO: dropdown (pupulated from settings) for category
   // Add checkboxes
-  // TODO: add onEdit for submit checkbox to call submit function
   cells = sheet.getRange(5, 2, 2, 1);
   cells.insertCheckboxes();
 
@@ -118,7 +120,23 @@ function insertDate() {
   cell.setValue(new Date());
 }
 
-// TODO: Function to add expense (Both sidebar + from add expense sheet)
+function onEdit(e) {
+  const range = e.range;
+  const sheet = range.getSheet();
+
+  if (sheet.getName() === "Add Expense" && range.getColumn() === 2 && range.getRow() === 6 && e.value === "TRUE") {
+    // Submit checkbox has been selected in 'Add Expense' sheet
+    Logger.log("Submitting expense...");
+    submitExpense();
+  }
+}
+
+function submitExpense() {
+  // TODO: collect info and add to table on Data sheet
+  // TODO: clear checkbox and form
+}
+
+// TODO: Submit expense from side bar?
 
 // TODO: Function for automated data entry from external sources?
 
