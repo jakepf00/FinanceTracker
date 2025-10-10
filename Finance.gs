@@ -133,7 +133,10 @@ function onEdit(e) {
     var description = sheet.getRange("B4").getValue();
     var isIncome = sheet.getRange("B5").getValue();
     submitExpense(date, amount, category, description, isIncome);
-    // TODO: clear checkbox and form
+    
+    // Clear form
+    const blankData = [[''],[''],[''],[''],[''],[''],];
+    sheet.getRange(1, 2, blankData.length, blankData[0].length).setValues(blankData);
   }
 }
 
