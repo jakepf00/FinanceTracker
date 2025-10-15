@@ -44,13 +44,6 @@ function createFinanceTemplate() {
   settingsSheetSetup(settingsSheet);
 }
 
-// Test function
-function insertDate() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  var cell = sheet.getRange('B2');
-  cell.setValue(new Date());
-}
-
 function onEdit(e) {
   const range = e.range;
   const sheet = range.getSheet();
@@ -66,7 +59,7 @@ function onEdit(e) {
     submitExpense(date, amount, category, description, isIncome);
     
     // Clear form
-    const blankData = [[''],[''],[''],[''],[''],[''],];
+    const blankData = [[new Date(new Date().setHours(0, 0, 0, 0))],[''],[''],[''],[''],[''],];
     sheet.getRange(1, 2, blankData.length, blankData[0].length).setValues(blankData);
   }
 }

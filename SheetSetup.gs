@@ -2,7 +2,7 @@ function addExpenseSheetSetup(addExpenseSheet) {
   // Add text to cells
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   const data = [
-    ['Date',''],
+    ['Date',new Date(new Date().setHours(0, 0, 0, 0))],
     ['Amount',''],
     ['Category',''],
     ['Description',''],
@@ -15,7 +15,6 @@ function addExpenseSheetSetup(addExpenseSheet) {
   range.setValues(data);
 
   // Date field
-  // TODO: default to today
   var cells = sheet.getRange(1, 2);
   const rule = SpreadsheetApp.newDataValidation().requireDate().setAllowInvalid(false).build();
   cells.setDataValidation(rule);
