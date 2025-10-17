@@ -1,3 +1,7 @@
+// TODO: Instead of getActiveSheet, use the passed in sheet
+// TODO: Then switch so that all sheets are created before all being initialized.
+// TODO: That way, sheets can reference other sheets without error when they are created
+
 function addExpenseSheetSetup(addExpenseSheet) {
   // Add text to cells
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
@@ -32,7 +36,33 @@ function addExpenseSheetSetup(addExpenseSheet) {
 }
 
 function dashboardSheetSetup(dashboardSheet) {
-  // TODO: implement
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const data = [
+    ['Monthly Spending','Year Dropdown...'],
+    ['Month','Total Spend'],
+    ['January','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
+    ['February','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
+    ['March','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
+    ['April','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
+    ['May','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
+    ['June','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
+    ['July','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
+    ['August','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
+    ['September','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
+    ['October','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
+    ['November','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
+    ['December','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
+  ];
+  const startRow = 1;
+  const startCol = 1;
+  const range = sheet.getRange(startRow, startCol, data.length, data[0].length);
+  range.setValues(data);
+
+  // TODO: Year dropdown
+  // TODO: Filter by month/year
+  // TODO: Categories - dropdown selection?
+  // TODO: Income chart
+  // TODO: Formatting?
 }
 
 function dataSheetSetup(dataSheet) {
