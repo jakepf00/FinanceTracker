@@ -1,10 +1,5 @@
-// TODO: Instead of getActiveSheet, use the passed in sheet
-// TODO: Then switch so that all sheets are created before all being initialized.
-// TODO: That way, sheets can reference other sheets without error when they are created
-
 function addExpenseSheetSetup(addExpenseSheet) {
   // Add text to cells
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   const data = [
     ['Date',new Date(new Date().setHours(0, 0, 0, 0))],
     ['Amount',''],
@@ -15,28 +10,27 @@ function addExpenseSheetSetup(addExpenseSheet) {
   ];
   const startRow = 1;
   const startCol = 1;
-  const range = sheet.getRange(startRow, startCol, data.length, data[0].length);
+  const range = addExpenseSheet.getRange(startRow, startCol, data.length, data[0].length);
   range.setValues(data);
 
   // Date field
-  var cells = sheet.getRange(1, 2);
+  var cells = addExpenseSheet.getRange(1, 2);
   const rule = SpreadsheetApp.newDataValidation().requireDate().setAllowInvalid(false).build();
   cells.setDataValidation(rule);
   // Currency for amount
-  cells = sheet.getRange(2, 2);
+  cells = addExpenseSheet.getRange(2, 2);
   cells.setNumberFormat("$#,##0.00");
   // TODO: dropdown (pupulated from settings) for category
   // Add checkboxes
-  cells = sheet.getRange(5, 2, 2, 1);
+  cells = addExpenseSheet.getRange(5, 2, 2, 1);
   cells.insertCheckboxes();
 
   // Formatting
   range.setBorder(true, true, true, true, true, true, "black", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
-  sheet.setHiddenGridlines(true);
+  addExpenseSheet.setHiddenGridlines(true);
 }
 
 function dashboardSheetSetup(dashboardSheet) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   const data = [
     ['Monthly Spending','Year Dropdown...'],
     ['Month','Total Spend'],
@@ -55,7 +49,7 @@ function dashboardSheetSetup(dashboardSheet) {
   ];
   const startRow = 1;
   const startCol = 1;
-  const range = sheet.getRange(startRow, startCol, data.length, data[0].length);
+  const range = dashboardSheet.getRange(startRow, startCol, data.length, data[0].length);
   range.setValues(data);
 
   // TODO: Year dropdown
@@ -71,7 +65,6 @@ function dataSheetSetup(dataSheet) {
   // - Have an alert dialog to instruct.
   // - Format > convert to table.
   // - Name it as well?  or future finding/use.
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   const data = [
     ['Date', 'Amount','Category','Description','isIncome'],
     ['10/04/2025','$0.00','Test','Test Expense','FALSE'],
@@ -79,10 +72,10 @@ function dataSheetSetup(dataSheet) {
   ];
   const startRow = 1;
   const startCol = 1;
-  const range = sheet.getRange(startRow, startCol, data.length, data[0].length);
+  const range = dataSheet.getRange(startRow, startCol, data.length, data[0].length);
   range.setValues(data);
 
-  cells = sheet.getRange(2, 5, 2, 1);
+  cells = dataSheet.getRange(2, 5, 2, 1);
   cells.insertCheckboxes();
 }
 

@@ -30,17 +30,13 @@ function createFinanceTemplate() {
   
   // Create and set up sheets
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-
   var addExpenseSheet = ss.insertSheet("Add Expense");
-  addExpenseSheetSetup(addExpenseSheet);
-
   var dashboardSheet = ss.insertSheet("Dashboard");
-  dashboardSheetSetup(dashboardSheet);
-
   var dataSheet = ss.insertSheet("Data");
-  dataSheetSetup(dataSheet);
-
   var settingsSheet = ss.insertSheet("Settings");
+  addExpenseSheetSetup(addExpenseSheet);
+  dashboardSheetSetup(dashboardSheet);
+  dataSheetSetup(dataSheet);
   settingsSheetSetup(settingsSheet);
 }
 
