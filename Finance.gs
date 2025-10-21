@@ -38,6 +38,7 @@ function createFinanceTemplate() {
   dashboardSheetSetup(dashboardSheet);
   dataSheetSetup(dataSheet);
   settingsSheetSetup(settingsSheet);
+  updateYearDropdown();
 }
 
 function onEdit(e) {
@@ -69,6 +70,8 @@ function submitExpense(date, amount, category, description, isIncome) {
   const startCol = 1;
   const range = sheet.getRange(startRow, startCol, data.length, data[0].length);
   range.setValues(data);
+
+  updateYearDropdown();
 }
 
 // TODO: Submit expense from side bar?

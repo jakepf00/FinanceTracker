@@ -1,3 +1,5 @@
+// TODO: Separate module for each sheet setup?
+
 function addExpenseSheetSetup(addExpenseSheet) {
   // Add text to cells
   const data = [
@@ -32,7 +34,7 @@ function addExpenseSheetSetup(addExpenseSheet) {
 
 function dashboardSheetSetup(dashboardSheet) {
   const data = [
-    ['Monthly Spending','Year Dropdown...'],
+    ['Monthly Spending','2025'],
     ['Month','Total Spend'],
     ['January','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
     ['February','=SUMIF(Data!E2:E,FALSE,Data!B2:B)'],
@@ -52,11 +54,37 @@ function dashboardSheetSetup(dashboardSheet) {
   const range = dashboardSheet.getRange(startRow, startCol, data.length, data[0].length);
   range.setValues(data);
 
-  // TODO: Year dropdown
   // TODO: Filter by month/year
   // TODO: Categories - dropdown selection?
   // TODO: Income chart
   // TODO: Formatting?
+}
+
+function updateYearDropdown() {
+  dashboardSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Dashboard");
+  dataSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Data");
+
+  // Get dropdown values
+  const dateValues = dataSheet.getRange(2, 1, dataSheet.getLastRow(), 1).getValues();
+  const uniqueYears = new Set();
+  dateValues.forEach(row => {
+    const cellValue = row[0]; // Each row from getValues() is an array, even for a single column
+    if (cellValue instanceof Date) {
+      const year = cellValue.getFullYear();
+      uniqueYears.add(year);
+    }
+  });
+  const yearsArray = Array.from(uniqueYears);
+  // TODO: Sort the years array?
+
+  // Set dropdown cell validation rule
+  var dropdownCell = dashboardSheet.getRange("B1");
+  var rule = SpreadsheetApp.newDataValidation()
+      .requireValueInList(yearsArray)
+      .setAllowInvalid(false) // Prevents users from entering values not in the list
+      .build();
+  dropdownCell.setDataValidation(rule);
+  // TODO: Make this dropdown actually change the displayed data
 }
 
 function dataSheetSetup(dataSheet) {
