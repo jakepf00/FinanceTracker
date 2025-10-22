@@ -33,28 +33,28 @@ function addExpenseSheetSetup(addExpenseSheet) {
 }
 
 function dashboardSheetSetup(dashboardSheet) {
+  // TODO: Format these cells as currency
   const data = [
     ['Monthly Spending','2025'],
     ['Month','Total Spend'],
-    ['January','=SUMIF(Data!E:E,FALSE,Data!B:B)'],
-    ['February','=SUMIF(Data!E:E,FALSE,Data!B:B)'],
-    ['March','=SUMIF(Data!E:E,FALSE,Data!B:B)'],
-    ['April','=SUMIF(Data!E:E,FALSE,Data!B:B)'],
-    ['May','=SUMIF(Data!E:E,FALSE,Data!B:B)'],
-    ['June','=SUMIF(Data!E:E,FALSE,Data!B:B)'],
-    ['July','=SUMIF(Data!E:E,FALSE,Data!B:B)'],
-    ['August','=SUMIF(Data!E:E,FALSE,Data!B:B)'],
-    ['September','=SUMIF(Data!E:E,FALSE,Data!B:B)'],
-    ['October','=SUMIF(Data!E:E,FALSE,Data!B:B)'],
-    ['November','=SUMIF(Data!E:E,FALSE,Data!B:B)'],
-    ['December','=SUMIF(Data!E:E,FALSE,Data!B:B)'],
+    ['January','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=1),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
+    ['February','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=2),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
+    ['March','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=3),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
+    ['April','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=4),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
+    ['May','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=5),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
+    ['June','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=6),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
+    ['July','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=7),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
+    ['August','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=8),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
+    ['September','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=9),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
+    ['October','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=10),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
+    ['November','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=11),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
+    ['December','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=12),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
   ];
   const startRow = 1;
   const startCol = 1;
   const range = dashboardSheet.getRange(startRow, startCol, data.length, data[0].length);
   range.setValues(data);
 
-  // TODO: Filter by month/year
   // TODO: Categories - dropdown selection?
   // TODO: Income chart
   // TODO: Formatting?
