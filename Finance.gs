@@ -47,6 +47,7 @@ function onEdit(e) {
 
   if (sheet.getName() === "Add Expense" && range.getColumn() === 2 && range.getRow() === 6 && e.value === "TRUE") {
     // Submit checkbox has been selected in 'Add Expense' sheet
+    // TODO: Extra data validation (something has been entered)
     Logger.log("Submitting expense...");
     var date = sheet.getRange("B1").getValue();
     var amount = sheet.getRange("B2").getValue();
@@ -56,7 +57,7 @@ function onEdit(e) {
     submitExpense(date, amount, category, description, isIncome);
     
     // Clear form
-    const blankData = [[new Date(new Date().setHours(0, 0, 0, 0))],[''],[''],[''],[''],[''],];
+    const blankData = [[new Date(new Date().setHours(0, 0, 0, 0))],[''],[''],[''],['FALSE'],['FALSE'],];
     sheet.getRange(1, 2, blankData.length, blankData[0].length).setValues(blankData);
   }
 }
