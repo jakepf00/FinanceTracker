@@ -55,6 +55,10 @@ function dashboardSheetSetup(dashboardSheet) {
   const range = dashboardSheet.getRange(startRow, startCol, data.length, data[0].length);
   range.setValues(data);
 
+  // Currency formatting
+  var cells = dashboardSheet.getRange("B3:B14");
+  cells.setNumberFormat("$#,##0.00");
+
   // TODO: Categories - dropdown selection?
   // TODO: Income chart
   // TODO: Formatting?
