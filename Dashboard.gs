@@ -1,37 +1,3 @@
-// TODO: Separate module for each sheet setup?
-
-function addExpenseSheetSetup(addExpenseSheet) {
-  // Add text to cells
-  const data = [
-    ['Date',new Date(new Date().setHours(0, 0, 0, 0))],
-    ['Amount',''],
-    ['Category',''],
-    ['Description',''],
-    ['Is Income',''],
-    ['Submit',''],
-  ];
-  const startRow = 1;
-  const startCol = 1;
-  const range = addExpenseSheet.getRange(startRow, startCol, data.length, data[0].length);
-  range.setValues(data);
-
-  // Date field
-  var cells = addExpenseSheet.getRange(1, 2);
-  const rule = SpreadsheetApp.newDataValidation().requireDate().setAllowInvalid(false).build();
-  cells.setDataValidation(rule);
-  // Currency for amount
-  cells = addExpenseSheet.getRange(2, 2);
-  cells.setNumberFormat("$#,##0.00");
-  // TODO: dropdown (pupulated from settings) for category
-  // Add checkboxes
-  cells = addExpenseSheet.getRange(5, 2, 2, 1);
-  cells.insertCheckboxes();
-
-  // Formatting
-  range.setBorder(true, true, true, true, true, true, "black", SpreadsheetApp.BorderStyle.SOLID_MEDIUM);
-  addExpenseSheet.setHiddenGridlines(true);
-}
-
 function dashboardSheetSetup(dashboardSheet) {
   // TODO: Format these cells as currency
   const data = [
@@ -89,28 +55,4 @@ function updateYearDropdown() {
       .build();
   dropdownCell.setDataValidation(rule);
   // TODO: Make this dropdown actually change the displayed data
-}
-
-function dataSheetSetup(dataSheet) {
-  // TODO: make non-editable? Or some sort of confirm changes thing?
-  // TODO: just have user manually turn this into a table?
-  // - Have an alert dialog to instruct.
-  // - Format > convert to table.
-  // - Name it as well?  or future finding/use.
-  const data = [
-    ['Date', 'Amount','Category','Description','isIncome'],
-    ['10/04/2025','$0.00','Test','Test Expense','FALSE'],
-    ['10/04/2025','$0.00','Test','Test Income','TRUE'],
-  ];
-  const startRow = 1;
-  const startCol = 1;
-  const range = dataSheet.getRange(startRow, startCol, data.length, data[0].length);
-  range.setValues(data);
-
-  cells = dataSheet.getRange(2, 5, 2, 1);
-  cells.insertCheckboxes();
-}
-
-function settingsSheetSetup(settingsSheet) {
-  // TODO: implement
 }

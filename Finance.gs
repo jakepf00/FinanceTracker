@@ -1,7 +1,3 @@
-// TODO: Break into modules
-// Data functions? submit expense (+ built in functions? onOpen, onEdit...)
-// Analysis module
-
 // Add menu to the UI
 function onOpen() {
   SpreadsheetApp.getUi()
@@ -9,11 +5,6 @@ function onOpen() {
     .addItem('Add Expense', 'showAddExpenseSidebar')
     .addItem('Set up new sheet', 'createFinanceTemplate')
     .addToUi();
-}
-
-function showAddExpenseSidebar() {
-  var sidebarHtml = HtmlService.createHtmlOutputFromFile('AddExpenseSidebar').setTitle('Add Expense');
-  SpreadsheetApp.getUi().showSidebar(sidebarHtml);
 }
 
 function createFinanceTemplate() {
@@ -61,22 +52,3 @@ function onEdit(e) {
     sheet.getRange(1, 2, blankData.length, blankData[0].length).setValues(blankData);
   }
 }
-
-function submitExpense(date, amount, category, description, isIncome) {
-  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = spreadsheet.getSheetByName("Data");
-  sheet.insertRowsAfter(1, 1);
-  const data = [[date, amount, category, description, isIncome],];
-  const startRow = 2;
-  const startCol = 1;
-  const range = sheet.getRange(startRow, startCol, data.length, data[0].length);
-  range.setValues(data);
-
-  updateYearDropdown();
-}
-
-// TODO: Submit expense from side bar?
-
-// TODO: Function for automated data entry from external sources?
-
-// TODO: Functions for data analysis, display on dashboard
