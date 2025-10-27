@@ -1,20 +1,20 @@
 function dashboardSheetSetup(dashboardSheet) {
   // TODO: Format these cells as currency
   const data = [
-    ['Monthly Spending','2025'],
+    ['2025','Category...'],
     ['Month','Total Spend'],
-    ['January','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=1),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
-    ['February','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=2),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
-    ['March','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=3),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
-    ['April','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=4),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
-    ['May','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=5),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
-    ['June','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=6),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
-    ['July','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=7),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
-    ['August','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=8),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
-    ['September','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=9),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
-    ['October','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=10),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
-    ['November','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=11),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
-    ['December','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=12),TRUE,INDEX(YEAR(Data!A:A)=B1),TRUE)'],
+    ['January','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=1),TRUE,INDEX(YEAR(Data!A:A)=A1),TRUE)'],
+    ['February','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=2),TRUE,INDEX(YEAR(Data!A:A)=A1),TRUE)'],
+    ['March','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=3),TRUE,INDEX(YEAR(Data!A:A)=A1),TRUE)'],
+    ['April','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=4),TRUE,INDEX(YEAR(Data!A:A)=A1),TRUE)'],
+    ['May','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=5),TRUE,INDEX(YEAR(Data!A:A)=A1),TRUE)'],
+    ['June','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=6),TRUE,INDEX(YEAR(Data!A:A)=A1),TRUE)'],
+    ['July','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=7),TRUE,INDEX(YEAR(Data!A:A)=A1),TRUE)'],
+    ['August','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=8),TRUE,INDEX(YEAR(Data!A:A)=A1),TRUE)'],
+    ['September','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=9),TRUE,INDEX(YEAR(Data!A:A)=A1),TRUE)'],
+    ['October','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=10),TRUE,INDEX(YEAR(Data!A:A)=A1),TRUE)'],
+    ['November','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=11),TRUE,INDEX(YEAR(Data!A:A)=A1),TRUE)'],
+    ['December','=SUMIFS(Data!B:B,Data!E:E,FALSE,INDEX(MONTH(Data!A:A)=12),TRUE,INDEX(YEAR(Data!A:A)=A1),TRUE)'],
   ];
   const startRow = 1;
   const startCol = 1;
@@ -48,7 +48,7 @@ function updateYearDropdown() {
   // TODO: Sort the years array?
 
   // Set dropdown cell validation rule
-  var dropdownCell = dashboardSheet.getRange("B1");
+  var dropdownCell = dashboardSheet.getRange("A1");
   var rule = SpreadsheetApp.newDataValidation()
       .requireValueInList(yearsArray)
       .setAllowInvalid(false) // Prevents users from entering values not in the list
